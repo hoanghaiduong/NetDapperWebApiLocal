@@ -1,0 +1,1 @@
+"DefaultConnection": "Server=118.69.126.49;User Id=UserLTBackend;Password=Yeutuan1*;Database=LTBackend;TrustServerCertificate=True;",
