@@ -10,7 +10,7 @@ namespace NetDapperWebApi.DTO
 {
     public class RoomTypeDTO 
     {
-        public int? HotelId { get; set; }
+  
         public string Name { get; set; }
         public string? Description { get; set; }
         public decimal PricePerNight { get; set; }

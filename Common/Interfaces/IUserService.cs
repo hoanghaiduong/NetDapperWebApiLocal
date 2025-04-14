@@ -14,6 +14,7 @@ namespace NetDapperWebApi.Common.Interfaces
         Task<User> GetUserById(int id,int depth);
         Task<PaginatedResult<User>> GetAllUsers(PaginationModel pagination);
         Task<User> UpdateUser(int id,UpdateUserDTO user);
-        Task<bool> DeleteUser(int id);
+        Task<string> DeleteUser(int id);
+        Task<bool> DeleteUsers(DeleteUsersDTO userIds);
     }
 }

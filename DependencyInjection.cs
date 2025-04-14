@@ -13,7 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NetDapperWebApi.Common.Filters;
 using NetDapperWebApi.Common.Interfaces;
-using NetDapperWebApi.Common.Validators;
+
 using NetDapperWebApi.Models;
 using NetDapperWebApi.Services;
 
@@ -39,13 +39,12 @@ namespace NetDapperWebApi
 
             services.AddScoped<IRoomTypeService, RoomTypeService>();
             services.AddScoped<IRoomService, RoomService>();
-            services.AddScoped<IHotelService, HotelService>();
+       
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IFileUploadService, FileUploadService>();
-            services.AddScoped<IImageService, ImageService>();
-
+        
             services.AddScoped<IAmenitiesService, AmenitiesService>();
             services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<IServiceServices, ServiceServices>();
@@ -55,7 +54,7 @@ namespace NetDapperWebApi
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IRedisCacheService, RedisCacheService>();
             // services.AddFluentValidationAutoValidation();
-            // services.AddValidatorsFromAssemblyContaining<CreateMultipleImageValidator>();
+        
 
 
             services.AddCors(options =>

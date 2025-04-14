@@ -6,7 +6,7 @@ namespace NetDapperWebApi.DTO.Updates
 {
     public class UpdateRoomDTO
     {
-        public int? HotelId { get; set; }
+        
 
         public int? RoomTypeId { get; set; }
 

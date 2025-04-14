@@ -3,12 +3,14 @@
 using System.Data;
 using System.Text.Json.Serialization;
 using Dapper;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Data.SqlClient;
 using NetDapperWebApi.Common.Interfaces;
 using NetDapperWebApi.DTO;
 using NetDapperWebApi.DTO.Creates;
 using NetDapperWebApi.Entities;
 using NetDapperWebApi.Models;
+using Newtonsoft.Json;
 
 namespace NetDapperWebApi.Services
 {
@@ -16,13 +18,13 @@ namespace NetDapperWebApi.Services
     {
         private readonly ILogger<UserService> _logger;
         private readonly IDbConnection _db;
-        private readonly IHotelService _hotelService;
+
         private readonly IFileUploadService _fileService;
-        public UserService(ILogger<UserService> logger, IDbConnection db, IHotelService hotelService, IFileUploadService fileService)
+        public UserService(ILogger<UserService> logger, IDbConnection db, IFileUploadService fileService)
         {
             _logger = logger;
             _db = db;
-            _hotelService = hotelService;
+
             _fileService = fileService;
         }
 
@@ -51,7 +53,7 @@ namespace NetDapperWebApi.Services
                     var roleIds = Newtonsoft.Json.JsonConvert.SerializeObject(user.Roles);
                     parameters.Add("@RolesJson", roleIds);
                 }
-                parameters.Add("@HotelId", user.HotelId);
+
                 // Gọi stored procedure Users_Create
                 var result = await _db.QueryFirstOrDefaultAsync<User>(
                     "Users_Create", parameters, commandType: CommandType.StoredProcedure);
@@ -69,14 +71,50 @@ namespace NetDapperWebApi.Services
 
         }
 
-        public async Task<bool> DeleteUser(int id)
+        public async Task<string> DeleteUser(int id)
         {
+            
+            var user = await GetUserById(id, 0) ?? throw new Exception("Not Found");
+            string avatar = user.Avatar!;
+            if (!string.IsNullOrEmpty(avatar))
+            {
+                 _fileService.DeleteSingleFile(avatar);
+            }
             var parameters = new DynamicParameters();
             parameters.Add("@Id", id);
-            var result = await _db.QueryFirstOrDefaultAsync<bool>(
+            var result = await _db.QueryFirstOrDefaultAsync<string>(
                 "Users_Delete", parameters, commandType: CommandType.StoredProcedure);
             return result;
         }
+
+        public async Task<bool> DeleteUsers(DeleteUsersDTO dto)
+        {
+            try
+            {
+                if (dto.UserIds == null || dto.UserIds.Count == 0)
+                    return false;
+
+                var parameters = new DynamicParameters();
+                parameters.Add("@UserIds", JsonConvert.SerializeObject(dto.UserIds));
+
+                using var multi = await _db.QueryMultipleAsync(
+                    "Users_DeleteMultiple", parameters, commandType: CommandType.StoredProcedure);
+
+                var avatars = (await multi.ReadAsync<string>())
+                .Where(a => !string.IsNullOrWhiteSpace(a)) // lọc avatar hợp lệ
+                .ToList();
+
+
+
+                return _fileService.DeleteMultipleFiles(avatars);
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, "Lỗi khi xóa người dùng");
+                return false;
+            }
+        }
+
 
         // Chỉ lấy danh sách relation cấp 1
         public async Task<PaginatedResult<User>> GetAllUsers(PaginationModel paginationModel)
@@ -101,8 +139,6 @@ namespace NetDapperWebApi.Services
 
             if (paginationModel.Depth >= 1)
             {
-                // Đọc danh sách hotels
-                var hotels = (await multi.ReadAsync<Hotel>()).ToList();
 
 
                 var roles = (await multi.ReadAsync<Role>()).ToList();
@@ -111,7 +147,7 @@ namespace NetDapperWebApi.Services
                 var bookings = (await multi.ReadAsync<Booking>()).ToList();
                 foreach (var user in userRelations)
                 {
-                    user.Hotel = hotels.Where(h => h.Id == user.HotelId).FirstOrDefault();
+
 
                     user.Roles = [.. roles.Where(s => s.UserId == user.Id)];
 
@@ -144,15 +180,6 @@ namespace NetDapperWebApi.Services
                     user.Roles = [.. (await multi.ReadAsync<Role>()).ToList().Where(s => s.UserId == user.Id)];
                     user.Bookings = (await multi.ReadAsync<Booking>()).ToList();
                 }
-            } // `multi` sẽ tự động đóng ở đây
-            if (depth == 1 && user?.HotelId != null)
-            {
-                user.Hotel = await _hotelService.GetHotel(user.HotelId ?? 0, 0);
-            }
-            // Sau khi đóng `multi`, gọi GetHotel bên ngoài using block
-            if (depth >= 2 && user?.HotelId != null)
-            {
-                user.Hotel = await _hotelService.GetHotel(user.HotelId ?? 0, depth);
             }
             return user;
         }
@@ -186,8 +213,6 @@ namespace NetDapperWebApi.Services
                     user.RefreshToken,
                     user.IsDisabled,
                     user.LastLogin,
-                    user.HotelId,
-
                 });
                 if (user.Roles != null && user.Roles.Count > 0)
                 {

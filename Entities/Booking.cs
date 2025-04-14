@@ -40,8 +40,6 @@ namespace NetDapperWebApi.Entities
         public virtual List<Service>? Services { get; set; }
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public virtual List<Invoice>? Invoices { get; set; }
-        //get Hotel From Booking
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public virtual Hotel? Hotel { get; set; }
+    
     }
 }

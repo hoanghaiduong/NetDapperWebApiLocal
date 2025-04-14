@@ -19,7 +19,11 @@ namespace NetDapperWebApi.DTO
         [DefaultValue(false)]
         public bool IsDisabled { get; set; } = false;
         public DateTime? LastLogin { get; set; }
-        public int? HotelId { get; set; }
+  
         public List<int>? Roles { get; set; } = [];
     }
+
+    public record DeleteUsersDTO(
+        List<int> UserIds
+    );
 }

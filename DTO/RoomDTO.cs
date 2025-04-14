@@ -9,8 +9,7 @@ namespace NetDapperWebApi.DTO
 {
     public class RoomDTO
     {
-        [Required]
-        public int HotelId { get; set; }
+ 
         [Required]
         public int RoomTypeId { get; set; }
         [Required]

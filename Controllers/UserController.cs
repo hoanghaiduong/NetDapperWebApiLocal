@@ -133,5 +133,19 @@ namespace NetDapperWebApi.Controllers
             }
 
         }
+
+        [HttpDelete("ids")]
+        public async Task<IActionResult> DeleteUsers([FromBody] DeleteUsersDTO userIds)
+        {
+            try
+            {
+                var result = await _userService.DeleteUsers(userIds);
+                return result == true ? Ok(new { message = $"Xoá các người dùng đã chọn {string.Join(",", userIds)} thành công" }) : BadRequest();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

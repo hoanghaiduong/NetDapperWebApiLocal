@@ -60,7 +60,7 @@ namespace NetDapperWebApi.Services
                 }
                 var imagesJson = JsonConvert.SerializeObject(images);
                 var parameters = new DynamicParameters();
-                parameters.Add("@HotelId", dto.HotelId);
+              
                 parameters.Add("@Name", dto.Name);
                 parameters.Add("@Description", dto.Description);
                 parameters.Add("@PricePerNight", dto.PricePerNight);
@@ -127,7 +127,8 @@ namespace NetDapperWebApi.Services
                 {
                     paginationModel.PageNumber,
                     paginationModel.PageSize,
-                    paginationModel.Depth
+                    paginationModel.Depth,
+                    paginationModel.Search
                 },
                 commandType: CommandType.StoredProcedure
             );
@@ -213,7 +214,6 @@ namespace NetDapperWebApi.Services
                 // ✅ Cập nhật vào DB
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id", id);
-                parameters.Add("@HotelId", dto.HotelId);
                 parameters.Add("@Name", dto.Name);
                 parameters.Add("@Description", dto.Description);
                 parameters.Add("@PricePerNight", dto.PricePerNight);

@@ -32,13 +32,8 @@ namespace NetDapperWebApi.Entities
         public DateTime? RefreshTokenExpiryDate { get; set; }
         public bool IsDisabled { get; set; } = false;
         public DateTime? LastLogin { get; set; }
-        [JsonIgnore]
-        public int? HotelId { get; set; } = null;
+  
 
-
-        // Navigation Properties
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public virtual Hotel? Hotel { get; set; }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public virtual List<Role>? Roles { get; set; } = null;

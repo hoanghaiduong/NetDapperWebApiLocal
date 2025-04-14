@@ -177,11 +177,7 @@ namespace NetDapperWebApi.Services
 
 
             }
-            if (depth >= 2)
-            {
-                var hotel = await multi.ReadFirstOrDefaultAsync<Hotel>();
-                booking.Hotel = hotel;
-            }
+         
 
             return booking;
         }

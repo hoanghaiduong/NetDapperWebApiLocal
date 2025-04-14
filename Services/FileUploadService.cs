@@ -57,13 +57,28 @@ namespace NetDapperWebApi.Services
 
         public bool DeleteSingleFile(string filePath)
         {
-            var fullPath = Path.Combine(_environment.WebRootPath, filePath);
-            if (File.Exists(fullPath))
+            try
             {
-                File.Delete(fullPath);
+                // Kiểm tra đường dẫn hợp lệ
+                if (string.IsNullOrWhiteSpace(filePath))
+                    return true; // Bỏ qua nếu đường dẫn không hợp lệ
+
+                // Xây dựng đường dẫn đầy đủ
+                var fullPath = Path.Combine(_environment.WebRootPath, filePath);
+
+                // Nếu file tồn tại thì xóa, nếu không tồn tại thì cũng coi là thành công
+                if (File.Exists(fullPath))
+                {
+                    File.Delete(fullPath);
+                }
                 return true;
             }
-            return false;
+            catch (Exception ex)
+            {
+                // Ghi log lỗi nếu cần thiết, ví dụ:
+                // _logger.LogError(ex, $"Lỗi khi xóa file tại: {filePath}");
+                return false;
+            }
         }
 
         public bool DeleteMultipleFiles(List<string> filePaths)
