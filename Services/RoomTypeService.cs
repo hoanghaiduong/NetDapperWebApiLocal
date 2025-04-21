@@ -38,7 +38,7 @@ namespace NetDapperWebApi.Services
             var parameters = new DynamicParameters();
             parameters.Add("@RoomTypeId", dto.EntityId, DbType.Int32);
             parameters.Add("@AmenitiesJson", jsonCategories, DbType.String);
-            
+
             var result = await _db.QueryFirstOrDefaultAsync<string>("sp_AddRoomTypeAmenities", parameters, commandType: CommandType.StoredProcedure);
 
             return result;
@@ -60,7 +60,7 @@ namespace NetDapperWebApi.Services
                 }
                 var imagesJson = JsonConvert.SerializeObject(images);
                 var parameters = new DynamicParameters();
-              
+
                 parameters.Add("@Name", dto.Name);
                 parameters.Add("@Description", dto.Description);
                 parameters.Add("@PricePerNight", dto.PricePerNight);
@@ -101,7 +101,7 @@ namespace NetDapperWebApi.Services
 
         public async Task<RoomType> GetRoomType(int id, int depth)
         {
-         
+
             var parameters = new DynamicParameters();
             parameters.Add("@Id", id);
             parameters.Add("@Depth", depth);
@@ -109,11 +109,14 @@ namespace NetDapperWebApi.Services
                  "RoomTypes_GetByID", parameters, commandType: CommandType.StoredProcedure);
             var roomType = await multi.ReadFirstOrDefaultAsync<RoomType>();
 
+
             if (depth >= 1)
             {
                 roomType.Rooms = (await multi.ReadAsync<Room>()).ToList();
-
-
+            }
+            if (depth >= 2)
+            {
+                roomType.Amenities = (await multi.ReadAsync<Amenities>()).ToList();
             }
 
             return roomType;
@@ -121,15 +124,14 @@ namespace NetDapperWebApi.Services
 
         public async Task<PaginatedResult<RoomType>> GetRoomTypes(PaginationModel paginationModel)
         {
+            var parameters = new DynamicParameters();
+            parameters.Add("@PageNumber", paginationModel.PageNumber);
+            parameters.Add("@PageSize", paginationModel.PageSize);
+            parameters.Add("@Depth", paginationModel.Depth);
+            parameters.Add("@Search", paginationModel.Search);
             var multi = await _db.QueryMultipleAsync(
                 "RoomTypes_GetAll",
-                new
-                {
-                    paginationModel.PageNumber,
-                    paginationModel.PageSize,
-                    paginationModel.Depth,
-                    paginationModel.Search
-                },
+                parameters,
                 commandType: CommandType.StoredProcedure
             );
 
@@ -150,7 +152,7 @@ namespace NetDapperWebApi.Services
             }
 
 
-            return new PaginatedResult<RoomType>(roomTypes, totalCount, paginationModel.PageSize, paginationModel.PageNumber);
+            return new PaginatedResult<RoomType>(roomTypes, totalCount, paginationModel.PageNumber, paginationModel.PageSize);
         }
 
 

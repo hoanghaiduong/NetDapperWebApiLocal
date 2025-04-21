@@ -10,7 +10,7 @@ namespace NetDapperWebApi.Entities
 {
     public class RoomType : BaseEntity<int>
     {
-  
+
         public string Name { get; set; }
         public string? Description { get; set; }
         public decimal PricePerNight { get; set; }
@@ -37,8 +37,8 @@ namespace NetDapperWebApi.Entities
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<Room>? Rooms { get; set; } = null;
-
-    
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<Amenities> Amenities { get; set; } = [];
 
     }
 }
