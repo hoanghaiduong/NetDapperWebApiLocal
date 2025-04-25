@@ -119,7 +119,7 @@ namespace NetDapperWebApi.Controllers
             {
                 var success = await _roomTypeService.DeleteRoomType(id);
                 return success
-                    ? Results.NoContent()
+                    ? Results.Ok(new { message = "Xoá loại phòng thành công !" })
                     : Results.NotFound(new { message = "RoomType not found" });
             }
 

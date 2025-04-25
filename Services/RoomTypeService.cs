@@ -92,11 +92,22 @@ namespace NetDapperWebApi.Services
 
         public async Task<bool> DeleteRoomType(int id)
         {
+            //get roomRoomType By Id
+            var roomType = await GetRoomType(id, 0);
+            if (roomType.Thumbnail != null)
+            {
+                _fileUploadService.DeleteSingleFile(roomType.Thumbnail);
+            }
+            if (roomType.Images != null && roomType.ImageList.Count > 0)
+            {
+                _fileUploadService.DeleteMultipleFiles(roomType.ImageList);
+            }
             var parameters = new DynamicParameters();
             parameters.Add("@Id", id);
-            var result = await _db.QueryFirstOrDefaultAsync<bool>(
+            var result = await _db.ExecuteAsync(
                 "RoomTypes_Delete", parameters, commandType: CommandType.StoredProcedure);
-            return result;
+
+            return result == -1;
         }
 
         public async Task<RoomType> GetRoomType(int id, int depth)
