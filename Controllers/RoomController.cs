@@ -1,14 +1,15 @@
 
 using Microsoft.AspNetCore.Mvc;
-using NetDapperWebApi.Common.Interfaces;
-using NetDapperWebApi.DTO;
-using NetDapperWebApi.DTO.Creates.Rooms;
-using NetDapperWebApi.DTO.Updates;
-using NetDapperWebApi.Entities;
-using NetDapperWebApi.Models;
+using NetDapperWebApi_local.Common.Enums;
+using NetDapperWebApi_local.Common.Interfaces;
+using NetDapperWebApi_local.DTO;
+using NetDapperWebApi_local.DTO.Creates.Rooms;
+using NetDapperWebApi_local.DTO.Updates;
+using NetDapperWebApi_local.Entities;
+using NetDapperWebApi_local.Models;
 
 
-namespace NetDapperWebApi.Controllers
+namespace NetDapperWebApi_local.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -21,7 +22,7 @@ namespace NetDapperWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IResult> Create([FromForm] CreateRoomDTO dto)
+        public async Task<IResult> Create([FromBody] CreateRoomDTO dto)
         {
             try
             {
@@ -46,14 +47,14 @@ namespace NetDapperWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IResult> GetAll([FromQuery] PaginationModel paginationModel)
+        public async Task<IResult> GetAll([FromQuery] PaginationModel paginationModel,[FromQuery] RoomFilters filters)
         {
-            var rooms = await _roomService.GetRooms(paginationModel);
+            var rooms = await _roomService.GetRooms(paginationModel,filters);
             return Results.Ok(rooms);
         }
 
         [HttpPut("{id}")]
-        public async Task<IResult> Update(int id, [FromForm] UpdateRoomDTO room)
+        public async Task<IResult> Update(int id, [FromBody] UpdateRoomDTO room)
         {
             var result = await _roomService.UpdateRoom(id, room);
             return Results.Ok(new { message = result });

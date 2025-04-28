@@ -1,7 +1,7 @@
 
 using System.ComponentModel;
 
-namespace NetDapperWebApi.Models
+namespace NetDapperWebApi_local.Models
 {
     public class PaginationModel
     {

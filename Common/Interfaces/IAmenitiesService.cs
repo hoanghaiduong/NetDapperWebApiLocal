@@ -1,10 +1,10 @@
 
-using NetDapperWebApi.DTO.Creates;
-using NetDapperWebApi.DTO.Updates;
-using NetDapperWebApi.Entities;
-using NetDapperWebApi.Models;
+using NetDapperWebApi_local.DTO.Creates;
+using NetDapperWebApi_local.DTO.Updates;
+using NetDapperWebApi_local.Entities;
+using NetDapperWebApi_local.Models;
 
-namespace NetDapperWebApi.Common.Interfaces
+namespace NetDapperWebApi_local.Common.Interfaces
 {
     public interface IAmenitiesService
     {

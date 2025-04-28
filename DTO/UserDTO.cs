@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace NetDapperWebApi.DTO
+namespace NetDapperWebApi_local.DTO
 {
     public class UserDTO
     {

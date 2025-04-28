@@ -1,6 +1,6 @@
 
 
-namespace NetDapperWebApi.DTO
+namespace NetDapperWebApi_local.DTO
 {
     public class AddRelationsMM<T, TKey>
     {

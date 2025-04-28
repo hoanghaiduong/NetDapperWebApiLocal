@@ -1,6 +1,6 @@
 
 
-namespace NetDapperWebApi.DTO.Creates
+namespace NetDapperWebApi_local.DTO.Creates
 {
     public class UpdateUserDTO : UserDTO
     {

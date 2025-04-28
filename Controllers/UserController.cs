@@ -5,14 +5,14 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NetDapperWebApi.Common.Constants;
-using NetDapperWebApi.Common.Interfaces;
-using NetDapperWebApi.DTO;
-using NetDapperWebApi.DTO.Creates;
-using NetDapperWebApi.Entities;
-using NetDapperWebApi.Models;
+using NetDapperWebApi_local.Common.Constants;
+using NetDapperWebApi_local.Common.Interfaces;
+using NetDapperWebApi_local.DTO;
+using NetDapperWebApi_local.DTO.Creates;
+using NetDapperWebApi_local.Entities;
+using NetDapperWebApi_local.Models;
 
-namespace NetDapperWebApi.Controllers
+namespace NetDapperWebApi_local.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

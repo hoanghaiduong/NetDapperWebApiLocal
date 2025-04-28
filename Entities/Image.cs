@@ -1,5 +1,5 @@
 
-namespace NetDapperWebApi.Entities
+namespace NetDapperWebApi_local.Entities
 {
     public class Image : BaseEntity<int>
     {

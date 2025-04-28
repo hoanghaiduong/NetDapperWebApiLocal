@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using NetDapperWebApi.Common.Enums;
+using NetDapperWebApi_local.Common.Enums;
 
-namespace NetDapperWebApi.DTO.Creates
+namespace NetDapperWebApi_local.DTO.Creates
 {
     public class CreateInvoiceDTO 
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace NetDapperWebApi.DTO
+namespace NetDapperWebApi_local.DTO
 {
     public class BookingRoomTypesDTO
     {

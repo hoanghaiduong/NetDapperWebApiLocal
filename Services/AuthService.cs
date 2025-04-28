@@ -1,17 +1,17 @@
 
 using System.Data;
-using NetDapperWebApi.Common.Interfaces;
-using NetDapperWebApi.DTO;
-using NetDapperWebApi.Models;
+using NetDapperWebApi_local.Common.Interfaces;
+using NetDapperWebApi_local.DTO;
+using NetDapperWebApi_local.Models;
 using Dapper;
-using NetDapperWebApi.Entities;
+using NetDapperWebApi_local.Entities;
 using System.Security.Claims;
 using Microsoft.Data.SqlClient;
 using System.IdentityModel.Tokens.Jwt;
-using NetDapperWebApi.DTO.Creates;
+using NetDapperWebApi_local.DTO.Creates;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-namespace NetDapperWebApi.Services
+namespace NetDapperWebApi_local.Services
 {
     public class AuthService : IAuthService
     {

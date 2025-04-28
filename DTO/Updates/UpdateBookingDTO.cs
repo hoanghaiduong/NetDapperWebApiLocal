@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NetDapperWebApi.DTO.Updates
+namespace NetDapperWebApi_local.DTO.Updates
 {
     public class UpdateBookingDTO : BookingDTO
     {

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace NetDapperWebApi.Common.Enums
+namespace NetDapperWebApi_local.Common.Enums
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum EBookingStatus

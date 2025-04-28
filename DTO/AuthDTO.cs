@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace NetDapperWebApi.DTO
+namespace NetDapperWebApi_local.DTO
 {
     public record AuthDTO(
         [Required(ErrorMessage = "Email is required")]

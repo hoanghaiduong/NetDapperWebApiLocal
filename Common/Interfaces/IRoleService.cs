@@ -1,7 +1,7 @@
 
-using NetDapperWebApi.Entities;
+using NetDapperWebApi_local.Entities;
 
-namespace NetDapperWebApi.Common.Interfaces
+namespace NetDapperWebApi_local.Common.Interfaces
 {
     public interface IRoleService
     {

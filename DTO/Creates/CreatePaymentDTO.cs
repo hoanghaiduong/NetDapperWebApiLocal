@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace NetDapperWebApi.DTO.Creates
+namespace NetDapperWebApi_local.DTO.Creates
 {
     public class CreatePaymentDTO : PaymentDTO
     {

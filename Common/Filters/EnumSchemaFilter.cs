@@ -3,7 +3,7 @@ using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace NetDapperWebApi.Common.Filters
+namespace NetDapperWebApi_local.Common.Filters
 {
     public class EnumSchemaFilter : ISchemaFilter
     {

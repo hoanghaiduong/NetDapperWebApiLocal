@@ -1,10 +1,10 @@
 
 using System.Data;
 using Dapper;
-using NetDapperWebApi.Common.Interfaces;
-using NetDapperWebApi.Entities;
+using NetDapperWebApi_local.Common.Interfaces;
+using NetDapperWebApi_local.Entities;
 
-namespace NetDapperWebApi.Services
+namespace NetDapperWebApi_local.Services
 {
     public class RoleService : IRoleService
     {

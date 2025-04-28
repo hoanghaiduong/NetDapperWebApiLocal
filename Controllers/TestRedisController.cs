@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using NetDapperWebApi.Common.Attributes;
-using NetDapperWebApi.Common.Interfaces;
-using NetDapperWebApi.Entities;
+using NetDapperWebApi_local.Common.Attributes;
+using NetDapperWebApi_local.Common.Interfaces;
+using NetDapperWebApi_local.Entities;
+using NetDapperWebApi_local.Models;
 
-namespace NetDapperWebApi.Controllers
+namespace NetDapperWebApi_local.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -22,21 +23,28 @@ namespace NetDapperWebApi.Controllers
             _roleService = roleService;
             _redis = redis;
         }
+        [HttpGet("test")]
+        public async Task<IActionResult> TestApi()
+        {
 
+           return Ok(new ApiResponse<object>(true,"kaka","thành công",null));
+        }
         [HttpGet]
         public async Task<IActionResult> GetRoles()
         {
-            var dataCaching =  _redis.GetData<List<Role>>(nameof(Role));
+            var dataCaching = _redis.GetData<List<Role>>(nameof(Role));
             if (dataCaching is not null && dataCaching.Count != 0)
             {
-                return Ok(new {
-                    cache=dataCaching
+                return Ok(new
+                {
+                    cache = dataCaching
                 });
             }
             var roles = await _roleService.GetRoles();
             _redis.SetData(nameof(Role), roles.ToList());
-            return Ok(new {
-                database=roles
+            return Ok(new
+            {
+                database = roles
             });
         }
     }

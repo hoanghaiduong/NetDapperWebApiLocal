@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NetDapperWebApi.Common.Constants
+namespace NetDapperWebApi_local.Common.Constants
 {
     public static class AppRole
     {

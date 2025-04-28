@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NetDapperWebApi.DTO;
-using NetDapperWebApi.DTO.Creates;
-using NetDapperWebApi.DTO.Updates;
-using NetDapperWebApi.Entities;
-using NetDapperWebApi.Models;
-using NetDapperWebApi.Services;
+using NetDapperWebApi_local.DTO;
+using NetDapperWebApi_local.DTO.Creates;
+using NetDapperWebApi_local.DTO.Updates;
+using NetDapperWebApi_local.Entities;
+using NetDapperWebApi_local.Models;
+using NetDapperWebApi_local.Services;
 
-namespace NetDapperWebApi.Common.Interfaces
+namespace NetDapperWebApi_local.Common.Interfaces
 {
     public interface IRoomTypeService
     {

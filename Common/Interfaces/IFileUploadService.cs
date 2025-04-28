@@ -1,6 +1,6 @@
 
 
-namespace NetDapperWebApi.Common.Interfaces
+namespace NetDapperWebApi_local.Common.Interfaces
 {
     public interface IFileUploadService
     {

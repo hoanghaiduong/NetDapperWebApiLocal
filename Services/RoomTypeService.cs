@@ -6,16 +6,16 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Data.SqlClient;
-using NetDapperWebApi.Common.Interfaces;
-using NetDapperWebApi.DTO;
-using NetDapperWebApi.DTO.Creates;
-using NetDapperWebApi.DTO.Updates;
-using NetDapperWebApi.Entities;
-using NetDapperWebApi.Models;
+using NetDapperWebApi_local.Common.Interfaces;
+using NetDapperWebApi_local.DTO;
+using NetDapperWebApi_local.DTO.Creates;
+using NetDapperWebApi_local.DTO.Updates;
+using NetDapperWebApi_local.Entities;
+using NetDapperWebApi_local.Models;
 using Newtonsoft.Json;
 using WebApi.Context;
 
-namespace NetDapperWebApi.Services
+namespace NetDapperWebApi_local.Services
 {
     public class RoomTypeService : IRoomTypeService
     {

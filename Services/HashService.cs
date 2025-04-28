@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace NetDapperWebApi.Services
+namespace NetDapperWebApi_local.Services
 {
     public static class HashService
     {

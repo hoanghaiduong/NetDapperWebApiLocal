@@ -1,9 +1,9 @@
 using System.Security.Claims;
-using NetDapperWebApi.DTO;
-using NetDapperWebApi.Entities;
-using NetDapperWebApi.Models;
+using NetDapperWebApi_local.DTO;
+using NetDapperWebApi_local.Entities;
+using NetDapperWebApi_local.Models;
 
-namespace NetDapperWebApi.Common.Interfaces
+namespace NetDapperWebApi_local.Common.Interfaces
 {
     public interface IAuthService
     {

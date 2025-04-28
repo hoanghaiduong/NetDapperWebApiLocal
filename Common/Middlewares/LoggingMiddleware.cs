@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Text.Json;
 
-namespace NetDapperWebApi.Common.Middlewares
+namespace NetDapperWebApi_local.Common.Middlewares
 {
     public class LoggingMiddleware
     {

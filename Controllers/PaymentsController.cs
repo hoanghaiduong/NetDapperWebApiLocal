@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using NetDapperWebApi.Common.Enums;
-using NetDapperWebApi.Common.Interfaces;
-using NetDapperWebApi.DTO.Creates;
-using NetDapperWebApi.DTO.Updates;
-using NetDapperWebApi.Models;
+using NetDapperWebApi_local.Common.Enums;
+using NetDapperWebApi_local.Common.Interfaces;
+using NetDapperWebApi_local.DTO.Creates;
+using NetDapperWebApi_local.DTO.Updates;
+using NetDapperWebApi_local.Models;
 
-namespace NetDapperWebApi.Controllers
+namespace NetDapperWebApi_local.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

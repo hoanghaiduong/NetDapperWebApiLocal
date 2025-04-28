@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NetDapperWebApi.DTO.Updates
+namespace NetDapperWebApi_local.DTO.Updates
 {
     public class UpdateRoomTypeDTO : RoomTypeDTO
     {

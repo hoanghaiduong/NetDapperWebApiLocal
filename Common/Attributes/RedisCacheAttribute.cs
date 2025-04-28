@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Distributed;
 
-namespace NetDapperWebApi.Common.Attributes
+namespace NetDapperWebApi_local.Common.Attributes
 {
     public class RedisCacheAttribute : Attribute
     {
@@ -19,7 +19,7 @@ namespace NetDapperWebApi.Common.Attributes
         // public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         // {
         //     var cache = context.HttpContext.RequestServices.GetRequiredService<IDistributedCache>();
-        //     var cacheKey = $"NetDapperWebApi_{context.HttpContext.Request.Path}";
+        //     var cacheKey = $"NetDapperWebApi_local_{context.HttpContext.Request.Path}";
 
         //     Console.WriteLine($"🔍 Checking cache for key: {cacheKey}");
 

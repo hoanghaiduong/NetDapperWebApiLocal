@@ -2,7 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace NetDapperWebApi.Models
+namespace NetDapperWebApi_local.Models
 {
     public record RefreshTokenModel(
         [Required]

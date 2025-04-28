@@ -1,9 +1,9 @@
 
 
 using System.Text.Json.Serialization;
-using NetDapperWebApi.Common.Enums;
+using NetDapperWebApi_local.Common.Enums;
 
-namespace NetDapperWebApi.DTO
+namespace NetDapperWebApi_local.DTO
 {
     public class BookingDTO
     {

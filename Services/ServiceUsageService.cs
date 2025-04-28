@@ -4,11 +4,11 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using NetDapperWebApi.Common.Interfaces;
-using NetDapperWebApi.DTO.Creates;
-using NetDapperWebApi.Entities;
+using NetDapperWebApi_local.Common.Interfaces;
+using NetDapperWebApi_local.DTO.Creates;
+using NetDapperWebApi_local.Entities;
 
-namespace NetDapperWebApi.Services
+namespace NetDapperWebApi_local.Services
 {
     public class ServiceUsageService : IServiceUsageService
     {

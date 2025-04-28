@@ -1,14 +1,14 @@
 
-using NetDapperWebApi.Common.Middlewares;
+using NetDapperWebApi_local.Common.Middlewares;
 
-namespace NetDapperWebApi.Extensions
+namespace NetDapperWebApi_local.Extensions
 {
     public static class MiddlewareExtensions
     {
-        public static IApplicationBuilder UseRequestLogging(
+        public static IApplicationBuilder UseCustomMiddlewares(
             this IApplicationBuilder builder)
         {
-            // builder.UseMiddleware<ErrorHandlingMiddleware>();
+            builder.UseMiddleware<ErrorHandlingMiddleware>();
             builder.UseMiddleware<LoggingMiddleware>();
             return builder;
         }

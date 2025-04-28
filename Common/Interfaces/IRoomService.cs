@@ -1,17 +1,18 @@
-using NetDapperWebApi.DTO;
-using NetDapperWebApi.DTO.Creates.Rooms;
-using NetDapperWebApi.DTO.Updates;
-using NetDapperWebApi.Entities;
-using NetDapperWebApi.Models;
+using NetDapperWebApi_local.DTO.Creates.Rooms;
+using NetDapperWebApi_local.Entities;
+using NetDapperWebApi_local.Models;
+using NetDapperWebApi_local.DTO.Res;
+using NetDapperWebApi_local.DTO.Updates;
+using NetDapperWebApi_local.DTO;
 
-namespace NetDapperWebApi.Common.Interfaces
+namespace NetDapperWebApi_local.Common.Interfaces
 {
     public interface IRoomService
     {
 
         Task<Room> CreateRoom(CreateRoomDTO Room);
         Task<Room> GetRoom(int id, int depth);
-        Task<PaginatedResult<Room>> GetRooms(PaginationModel dto);
+        Task<PaginatedResult<RoomResult>> GetRooms(PaginationModel dto,RoomFilters filters);
         Task<Room> UpdateRoom(int id, UpdateRoomDTO Room);
         Task<bool> DeleteRoom(int id);
     }

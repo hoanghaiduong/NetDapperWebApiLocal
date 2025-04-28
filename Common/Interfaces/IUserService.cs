@@ -1,12 +1,12 @@
 
 
-using NetDapperWebApi.DTO;
-using NetDapperWebApi.DTO.Creates;
-using NetDapperWebApi.Entities;
-using NetDapperWebApi.Models;
-using NetDapperWebApi.Services;
+using NetDapperWebApi_local.DTO;
+using NetDapperWebApi_local.DTO.Creates;
+using NetDapperWebApi_local.Entities;
+using NetDapperWebApi_local.Models;
+using NetDapperWebApi_local.Services;
 
-namespace NetDapperWebApi.Common.Interfaces
+namespace NetDapperWebApi_local.Common.Interfaces
 {
     public interface IUserService
     {

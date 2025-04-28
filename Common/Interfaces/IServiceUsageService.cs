@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NetDapperWebApi.DTO.Creates;
-using NetDapperWebApi.Entities;
+using NetDapperWebApi_local.DTO.Creates;
+using NetDapperWebApi_local.Entities;
 
-namespace NetDapperWebApi.Common.Interfaces
+namespace NetDapperWebApi_local.Common.Interfaces
 {
     public interface IServiceUsageService
     {

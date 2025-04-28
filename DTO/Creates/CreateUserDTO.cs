@@ -2,7 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace NetDapperWebApi.DTO.Creates
+namespace NetDapperWebApi_local.DTO.Creates
 {
     public class CreateUserDTO : UserDTO
     {

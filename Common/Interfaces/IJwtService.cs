@@ -1,7 +1,7 @@
 
 using System.Security.Claims;
 
-namespace NetDapperWebApi.Common.Interfaces
+namespace NetDapperWebApi_local.Common.Interfaces
 {
     public interface IJwtService
     {

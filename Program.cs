@@ -1,6 +1,6 @@
 
-using NetDapperWebApi;
-using NetDapperWebApi.Extensions;
+using NetDapperWebApi_local;
+using NetDapperWebApi_local.Extensions;
 
 
 namespace WebApi
@@ -21,7 +21,7 @@ namespace WebApi
             app.UseHttpsRedirection();
             app.UseAuthentications();
             app.MapControllers();
-            app.UseRequestLogging();
+            app.UseCustomMiddlewares();
             app.Run();
         }
     }

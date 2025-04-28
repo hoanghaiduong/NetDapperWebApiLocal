@@ -2,14 +2,15 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
-using NetDapperWebApi.Common.Enums;
-using NetDapperWebApi.Entities;
+using NetDapperWebApi_local.Common.Enums;
+using NetDapperWebApi_local.Entities;
+using NetDapperWebApi_local.Common.Enums;
 
-namespace NetDapperWebApi.DTO
+namespace NetDapperWebApi_local.DTO
 {
     public class RoomDTO
     {
- 
+
         [Required]
         public int RoomTypeId { get; set; }
         [Required]
@@ -17,15 +18,16 @@ namespace NetDapperWebApi.DTO
 
         public int? Floor { get; set; }
 
-        
-        public ERoomStatus? Status { get; set; } = ERoomStatus.Ready;
+        public ERoomStatus? Status { get; set; } = ERoomStatus.Empty;
+        public ECleanStatus? CleanStatus { get; set; } = ECleanStatus.Ready;
 
+    }
 
-        public IFormFile? Thumbnail { get; set; }
-
-        public List<IFormFile>? Images { get; set; }
-
-
-
+    public class RoomFilters
+    {
+        public ERoomStatus? Status { get; set; } 
+        public ECleanStatus? CleanStatus { get; set; } 
+        public bool? IsSingleBed { get; set; } // true = chỉ lấy phòng có SingleBed > 0
+        public bool? IsDoubleBed { get; set; } // true = chỉ lấy phòng có DoubleBed > 0
     }
 }

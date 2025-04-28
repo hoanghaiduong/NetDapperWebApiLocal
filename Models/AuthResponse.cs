@@ -1,7 +1,7 @@
 
-using NetDapperWebApi.Entities;
+using NetDapperWebApi_local.Entities;
 
-namespace NetDapperWebApi.Models
+namespace NetDapperWebApi_local.Models
 {
     public class AuthResponse
     {

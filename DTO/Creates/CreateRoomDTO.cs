@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 
 
-namespace NetDapperWebApi.DTO.Creates.Rooms
+namespace NetDapperWebApi_local.DTO.Creates.Rooms
 {
     public class CreateRoomDTO : RoomDTO
     {

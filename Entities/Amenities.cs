@@ -1,7 +1,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace NetDapperWebApi.Entities
+namespace NetDapperWebApi_local.Entities
 {
     public class Amenities : BaseEntity<int>
     {

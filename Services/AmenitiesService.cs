@@ -6,14 +6,14 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Dapper;
 using FluentValidation;
-using NetDapperWebApi.Common.Interfaces;
-using NetDapperWebApi.DTO;
-using NetDapperWebApi.DTO.Creates;
-using NetDapperWebApi.DTO.Updates;
-using NetDapperWebApi.Entities;
-using NetDapperWebApi.Models;
+using NetDapperWebApi_local.Common.Interfaces;
+using NetDapperWebApi_local.DTO;
+using NetDapperWebApi_local.DTO.Creates;
+using NetDapperWebApi_local.DTO.Updates;
+using NetDapperWebApi_local.Entities;
+using NetDapperWebApi_local.Models;
 
-namespace NetDapperWebApi.Services
+namespace NetDapperWebApi_local.Services
 {
     public class AmenitiesService : IAmenitiesService
     {

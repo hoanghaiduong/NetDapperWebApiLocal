@@ -1,9 +1,9 @@
 
 using System.Text.Json;
 using Microsoft.Extensions.Caching.Distributed;
-using NetDapperWebApi.Common.Interfaces;
+using NetDapperWebApi_local.Common.Interfaces;
 
-namespace NetDapperWebApi.Services
+namespace NetDapperWebApi_local.Services
 {
     public class RedisCacheService(IDistributedCache cache) : IRedisCacheService
     {

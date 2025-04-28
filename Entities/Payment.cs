@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using NetDapperWebApi.Common.Enums;
+using NetDapperWebApi_local.Common.Enums;
 
-namespace NetDapperWebApi.Entities
+namespace NetDapperWebApi_local.Entities
 {
     public class Payment : BaseEntity<int>
     {
