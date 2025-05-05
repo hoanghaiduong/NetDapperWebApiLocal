@@ -15,13 +15,14 @@ namespace WebApi
             builder.Services.AddCustomModelStateValidation();
             //--------------------------------------------
             var app = builder.Build();
+            app.UseCustomMiddlewares();
             app.UseCustomExtensions();
             app.UseSwagger();
             app.UseSwaggerUI();
             app.UseHttpsRedirection();
             app.UseAuthentications();
             app.MapControllers();
-            app.UseCustomMiddlewares();
+
             app.Run();
         }
     }

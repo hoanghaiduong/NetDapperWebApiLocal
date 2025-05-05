@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Dapper;
 using NetDapperWebApi_local.Common.Interfaces;
@@ -25,31 +26,42 @@ namespace NetDapperWebApi_local.Services
 
         public async Task<Service> CreateService(CreateServiceDTO dto)
         {
-            //parameters
-            // @Name NVARCHAR(255),
-            // @Description NVARCHAR(500) = NULL,
-            // @Price INT,
-            // @CreatedAt DATETIME2(7) = NULL,
-            // @UpdatedAt DATETIME2(7) = NULL
+
             var parameters = new DynamicParameters();
             parameters.Add("@Name", dto.Name);
             parameters.Add("@Description", dto.Description);
             parameters.Add("@Price", dto.Price);
+            parameters.Add("@ServiceTypeId", dto.ServiceTypeId);
             parameters.Add("@CreatedAt", DateTime.Now);
             parameters.Add("@UpdatedAt", DateTime.Now);
             var result = await _db.QueryFirstOrDefaultAsync<Service>("Services_Create", parameters, commandType: CommandType.StoredProcedure);
             return result;
         }
 
-        public async Task<int> DeleteService(int id)
+        public async Task<bool> DeleteService(int id)
         {
             //parameters
             // @Id INT
 
             var parameters = new DynamicParameters();
             parameters.Add("@Id", id);
-            var result = await _db.ExecuteScalarAsync<int>("Services_Delete", parameters, commandType: CommandType.StoredProcedure);
-            return result;
+            var result = await _db.ExecuteAsync("Services_Delete", parameters, commandType: CommandType.StoredProcedure);
+            return result == -1;
+        }
+
+        public async Task<bool> DeleteServices(int[] ids)
+        {
+            var parameters = new DynamicParameters();
+
+
+            if (ids.Length > 0)
+            {
+                string jsonIds = JsonSerializer.Serialize<int[]>(ids);
+                parameters.Add("@ServiceIds", jsonIds);
+            }
+            var result = await _db.ExecuteAsync("Services_DeleteMultiple", parameters, commandType: CommandType.StoredProcedure);
+
+            return result == -1;
         }
 
         public async Task<Service> GetServiceById(int id, int depth)
@@ -62,9 +74,10 @@ namespace NetDapperWebApi_local.Services
             parameters.Add("@Depth", depth);
             using var multi = await _db.QueryMultipleAsync("Services_GetById", parameters, commandType: CommandType.StoredProcedure);
             var service = await multi.ReadSingleOrDefaultAsync<Service>();
-            var serviceUsages = (await multi.ReadAsync<ServiceUsage>()).ToList();
+
             if (depth >= 1)
             {
+                var serviceUsages = (await multi.ReadAsync<ServiceUsage>()).ToList();
                 service.ServiceUsages = [.. serviceUsages.Where(x => x.ServiceId == service.Id)];
             }
             return service;
@@ -109,6 +122,11 @@ namespace NetDapperWebApi_local.Services
             parameters.Add("@Name", dto.Name);
             parameters.Add("@Description", dto.Description);
             parameters.Add("@Price", dto.Price);
+            if (dto.ServiceTypeId != null)
+            {
+                parameters.Add("@ServiceTypeId", dto.ServiceTypeId);
+            }
+
             parameters.Add("@UpdatedAt", DateTime.Now);
             var result = _db.QueryFirstOrDefaultAsync<Service>("Services_Update", parameters, commandType: CommandType.StoredProcedure);
             return result;

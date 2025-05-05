@@ -12,10 +12,11 @@ namespace NetDapperWebApi_local.Common.Interfaces
     public interface IServiceServices
     {
         Task<Service> CreateService(CreateServiceDTO dto);
-        Task<Service> GetServiceById(int id,int depth);
+        Task<Service> GetServiceById(int id, int depth);
         Task<PaginatedResult<Service>> GetServices(PaginationModel dto);
         Task<Service> UpdateService(int id, UpdateServiceDTO dto);
-        Task<int> DeleteService(int id);
+        Task<bool> DeleteService(int id);
+        Task<bool> DeleteServices(int[] ids);
 
     }
 }

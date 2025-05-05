@@ -64,6 +64,19 @@ namespace NetDapperWebApi_local.Controllers
             });
         }
 
+        [HttpDelete("ids")]
+        public async Task<IActionResult> DeleteAmenities([FromBody] int[] ids)
+        {
+            try
+            {
+                var result = await _amenitieService.DeleteAmenityIdsAsync(ids);
+                return Ok(new ApiResponse<object>(true, message: $"Xoá amenitie với id = {string.Join(",", ids)} thành công !"));
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(new ApiResponse<object>(false, message: "Xoá thất bại",errors:ex.Message));
+            }
+        }
 
     }
 }

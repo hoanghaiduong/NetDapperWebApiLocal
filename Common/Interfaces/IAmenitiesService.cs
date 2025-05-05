@@ -14,6 +14,7 @@ namespace NetDapperWebApi_local.Common.Interfaces
         Task<Amenities> CreateAmenitiesAsync(CreateAmenitiesDTO dto);
         Task<Amenities> UpdateAmenitiesAsync(int id, UpdateAmenitiesDTO dto);
         Task<bool> DeleteAmenitiesAsync(int AmenitiesId);
+        Task<bool> DeleteAmenityIdsAsync(int[] amenityIds);
 
     }
 }

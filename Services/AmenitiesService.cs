@@ -118,6 +118,19 @@ namespace NetDapperWebApi_local.Services
             return rows != -1;
         }
 
+        public async Task<bool> DeleteAmenityIdsAsync(int[] amenityIds)
+        {
+            var parameters = new DynamicParameters();
 
+
+            if (amenityIds.Length > 0)
+            {
+                string jsonIds = JsonSerializer.Serialize<int[]>(amenityIds);
+                parameters.Add("@AmenityIds", jsonIds);
+            }
+            var result = await _db.ExecuteAsync("Amenities_DeleteMultiple", parameters, commandType: CommandType.StoredProcedure);
+
+            return result == -1;
+        }
     }
 }

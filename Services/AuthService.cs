@@ -30,7 +30,7 @@ namespace NetDapperWebApi_local.Services
 
         public async Task<string> GrantRolesToUser(AddRelationsMM<int, int> dto)
         {
-            // Serialize danh sách CategoryIds thành JSON
+            // Serialize danh sách ids thành JSON
             string json = System.Text.Json.JsonSerializer.Serialize(dto.Ids); // Ví dụ: "[1,2,3]"
 
             var parameters = new DynamicParameters();

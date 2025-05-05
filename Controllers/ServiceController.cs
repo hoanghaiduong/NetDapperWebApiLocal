@@ -29,7 +29,7 @@ namespace NetDapperWebApi_local.Controllers
             try
             {
                 var result = await _serviceServices.CreateService(dto);
-                return Ok(new { result });
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -43,7 +43,7 @@ namespace NetDapperWebApi_local.Controllers
             try
             {
                 var result = await _serviceServices.GetServiceById(id, depth);
-                return Ok(new { result });
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -57,7 +57,7 @@ namespace NetDapperWebApi_local.Controllers
             try
             {
                 var result = await _serviceServices.GetServices(dto);
-                return Ok(new { result });
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -71,7 +71,7 @@ namespace NetDapperWebApi_local.Controllers
             try
             {
                 var result = await _serviceServices.UpdateService(id, dto);
-                return Ok(new { result });
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -85,11 +85,25 @@ namespace NetDapperWebApi_local.Controllers
             try
             {
                 var result = await _serviceServices.DeleteService(id);
-                return Ok(new { result });
+                return Ok(new ApiResponse<object>(success: true, message: "Xoá thành công"));
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(new ApiResponse<object>(success: false, message: ex.Message));
+            }
+        }
+
+        [HttpDelete("ids")]
+        public async Task<IActionResult> DeleteServices(int[] ids)
+        {
+            try
+            {
+                var result = await _serviceServices.DeleteServices(ids);
+                return Ok(new ApiResponse<object>(success: true, message: "Xoá thành công"));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ApiResponse<object>(success: false, message: ex.Message));
             }
         }
     }

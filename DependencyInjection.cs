@@ -54,6 +54,7 @@ namespace NetDapperWebApi_local
             services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IRedisCacheService, RedisCacheService>();
+            services.AddScoped<IServiceTypeService, ServiceTypeService>();
             // services.AddFluentValidationAutoValidation();
 
 
