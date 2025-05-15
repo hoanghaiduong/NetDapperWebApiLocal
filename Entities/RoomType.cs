@@ -14,6 +14,7 @@ namespace NetDapperWebApi_local.Entities
         public string Name { get; set; }
         public string? Description { get; set; }
         public decimal PricePerNight { get; set; }
+        public decimal? PricePerHour { get; set; }
         public int NumberOfBathrooms { get; set; }
         public int NumberOfBeds { get; set; }
         public int SingleBed { get; set; }

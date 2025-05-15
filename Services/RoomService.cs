@@ -113,13 +113,15 @@ namespace NetDapperWebApi_local.Services
 
             if (rooms.Any() && paginationModel.Depth >= 1)
             {
-                var roomTypes = (await multi.ReadAsync<(int RoomTypeId, string RoomTypeName)>()).ToList();
+                var roomTypes = (await multi.ReadAsync<(int RoomTypeId, string RoomTypeName, decimal PricePerNight, decimal PricePerHour)>()).ToList();
                 foreach (var room in rooms)
                 {
                     var roomType = roomTypes.FirstOrDefault(rt => rt.RoomTypeId == room.RoomTypeId);
                     if (roomType != default)
                     {
                         room.RoomTypeName = roomType.RoomTypeName;
+                        room.PricePerNight = roomType.PricePerNight;
+                        room.PricePerHour = roomType.PricePerHour;
                     }
                 }
             }

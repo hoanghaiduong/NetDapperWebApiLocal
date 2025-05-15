@@ -11,6 +11,7 @@ namespace NetDapperWebApi_local.Entities
         public int Id { get; set; }
         public int BookingId { get; set; }
         public int RoomTypeId { get; set; }
+        public int RoomId { get; set; }
         public string? FullName { get; set; }
         public string? Email { get; set; }
         [JsonIgnore]

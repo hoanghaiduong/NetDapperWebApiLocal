@@ -14,6 +14,8 @@ namespace NetDapperWebApi_local.Entities
         [JsonIgnore]
         public int RoomTypeId { get; set; }
         public string RoomNumber { get; set; }
+        public decimal PricePerNight { get; set; }
+        public decimal? PricePerHour { get; set; }
         public int? Floor { get; set; }
         public ERoomStatus? Status { get; set; }
         public ECleanStatus? CleanStatus { get; set; }

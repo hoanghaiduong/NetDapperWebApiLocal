@@ -18,6 +18,8 @@ namespace NetDapperWebApi_local.Entities
         public string? ArrivalTime { get; set; } // Thời gian đến dự kiến
         public DateTime? CheckInDate { get; set; } = DateTime.Now;
         public DateTime? CheckOutDate { get; set; } = DateTime.Now;
+        public TimeSpan? StartTime { get; set; }
+        public TimeSpan? EndTime { get; set; }
         public EBookingStatus? Status { get; set; } = EBookingStatus.Pending;
         public decimal? BasePrice { get; set; } = 0;
         public decimal? TotalPrice { get; set; } = 0;
@@ -40,6 +42,6 @@ namespace NetDapperWebApi_local.Entities
         public virtual List<Service>? Services { get; set; }
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public virtual List<Invoice>? Invoices { get; set; }
-    
+
     }
 }

@@ -52,8 +52,6 @@ namespace NetDapperWebApi_local.Services
         public async Task<bool> DeleteServices(int[] ids)
         {
             var parameters = new DynamicParameters();
-
-
             if (ids.Length > 0)
             {
                 string jsonIds = JsonSerializer.Serialize<int[]>(ids);

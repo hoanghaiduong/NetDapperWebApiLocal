@@ -64,6 +64,7 @@ namespace NetDapperWebApi_local.Services
                 parameters.Add("@Name", dto.Name);
                 parameters.Add("@Description", dto.Description);
                 parameters.Add("@PricePerNight", dto.PricePerNight);
+                parameters.Add("@PricePerHour", dto.PricePerHour);
                 parameters.Add("@NumberOfBathrooms", dto.NumberOfBathrooms);
                 parameters.Add("@NumberOfBeds", dto.NumberOfBeds);
                 parameters.Add("@SingleBed", dto.SingleBed);
@@ -230,6 +231,7 @@ namespace NetDapperWebApi_local.Services
                 parameters.Add("@Name", dto.Name);
                 parameters.Add("@Description", dto.Description);
                 parameters.Add("@PricePerNight", dto.PricePerNight);
+                parameters.Add("@PricePerHour", dto.PricePerHour);
                 parameters.Add("@NumberOfBathrooms", dto.NumberOfBathrooms);
                 parameters.Add("@NumberOfBeds", dto.NumberOfBeds);
                 parameters.Add("@SingleBed", dto.SingleBed);

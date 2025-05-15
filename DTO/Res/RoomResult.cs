@@ -12,5 +12,7 @@ namespace NetDapperWebApi_local.DTO.Res
         public int Id { get; set; }
         public int RoomTypeId { get; set; }
         public string RoomTypeName { get; set; }
+        public decimal PricePerNight { get; set; }
+        public decimal? PricePerHour { get; set; }
     }
 }

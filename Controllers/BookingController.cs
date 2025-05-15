@@ -56,20 +56,27 @@ namespace NetDapperWebApi_local.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateBookingDTO dto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-         
-            var booking = await _bookingService.CreateAsync(dto);
-            return Ok(new { booking });
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                var booking = await _bookingService.CreateAsync(dto);
+                return Ok(new { booking });
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(new {ex.Message});
+            }
         }
 
         // PUT api/booking/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] UpdateBookingDTO dto,[FromQuery] EBookingStatus? status=null)
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateBookingDTO dto, [FromQuery] EBookingStatus? status = null)
         {
-             dto.Status=status.ToString();
+            dto.Status = status.ToString();
             var rowsAffected = await _bookingService.UpdateAsync(id, dto);
-           
+
             return Ok(rowsAffected);
         }
 

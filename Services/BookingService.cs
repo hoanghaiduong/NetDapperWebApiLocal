@@ -31,29 +31,34 @@ namespace NetDapperWebApi_local.Services
                 // Tạo DataTable cho TVP
                 var dt = new DataTable();
                 dt.Columns.Add("RoomTypeId", typeof(int));
+                dt.Columns.Add("RoomId", typeof(int));
                 dt.Columns.Add("FullName", typeof(string));
                 dt.Columns.Add("Email", typeof(string));
 
                 foreach (var item in dto.BookingRoomTypes)
                 {
-                    dt.Rows.Add(item.RoomTypeId, item.FullName, item.Email);
+                    dt.Rows.Add(item.RoomTypeId, item.RoomId, item.FullName, item.Email);
                     // _logger.LogInformation($"RoomTypeId: {item.RoomTypeId}, FullName: {item.FullName}, Email: {item.Email}");
                 }
                 var parameters = new DynamicParameters();
                 parameters.Add("@Notes", dto.Notes);
                 parameters.Add("@Adults", dto.Adults);
                 parameters.Add("@Children", dto.Children);
-                parameters.Add("@RoomCount", dt.Rows.Count);
+                parameters.Add("@RoomCount", dt?.Rows?.Count);
                 parameters.Add("@ArrivalTime", dto.ArrivalTime);
                 parameters.Add("@CheckInDate", dto.CheckInDate);
                 parameters.Add("@CheckOutDate", dto.CheckOutDate);
-                if (dto.BasePrice > 0)
-                {
-                    parameters.Add("@BasePrice", dto.BasePrice);
-                }
+                parameters.Add("@StartTime", dto.StartTime);
+                parameters.Add("@EndTime", dto.EndTime);
+
+
+                // if (dto.BasePrice > 0)
+                // {
+                //     parameters.Add("@BasePrice", dto.BasePrice);
+                // }
 
                 parameters.Add("@UserId", dto.UserId);
-                parameters.Add("@BookingRoomTypes", dt.AsTableValuedParameter("dbo.BookingRoomTypesTVP"));
+                parameters.Add("@BookingRoomAndRoomTypeTVP", dt.AsTableValuedParameter("dbo.BookingRoomAndRoomTypeTVP"));
 
                 var result = await _db.QueryFirstOrDefaultAsync<Booking>(
                     "Booking_Create",
@@ -66,7 +71,7 @@ namespace NetDapperWebApi_local.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                throw new Exception("Lỗi khi tạo booking");
+                throw new Exception(ex.Message);
             }
 
 
@@ -177,7 +182,7 @@ namespace NetDapperWebApi_local.Services
 
 
             }
-         
+
 
             return booking;
         }
@@ -210,10 +215,12 @@ namespace NetDapperWebApi_local.Services
                 parameters.Add("@ArrivalTime", dto.ArrivalTime);
                 parameters.Add("@CheckInDate", dto.CheckInDate);
                 parameters.Add("@CheckOutDate", dto.CheckOutDate);
-                parameters.Add("@Status", dto.Status,DbType.String);
+                parameters.Add("@StartTime", dto.StartTime);
+                parameters.Add("@EndTime", dto.EndTime);
+                parameters.Add("@Status", dto.Status, DbType.String);
                 parameters.Add("@BasePrice", dto.BasePrice);
                 parameters.Add("@UserId", dto.UserId);
-                parameters.Add("@BookingRoomTypes", dt.AsTableValuedParameter("dbo.BookingRoomTypesTVP"));
+                parameters.Add("@BookingRoomTypes", dt.AsTableValuedParameter("dbo.BookingRoomAndRoomTypeTVP"));
 
                 var result = await _db.QueryFirstOrDefaultAsync<Booking>(
                     "Booking_Update",
